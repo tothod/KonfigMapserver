@@ -1,0 +1,12 @@
+﻿SELECT
+  "Orter".kommumkod
+FROM	
+  public."Orter"
+WHERE
+  "inlagdiosm"=false AND "Orter".ortkod LIKE '____'
+GROUP BY
+  "Orter".kommumkod
+HAVING 
+  count(*)=1
+ORDER BY
+  "Orter".kommumkod;

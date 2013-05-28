@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" minimum-version="2.0.0">
+  &fontset-settings;
+
+<Style name="feltcode">
+	<Rule>
+		<Filter>[place] = 'city'</Filter>
+      		&maxscale_zoom1;
+      		&minscale_zoom19;
+      		<PointSymbolizer file="&symbols;/markerred.svg" allow-overlap="false" ignore-placement="false" transform="translate(0,-15)"/>
+	</Rule>
+	<Rule>
+		<Filter>[place] = 'town'</Filter>
+      		&maxscale_zoom1;
+      		&minscale_zoom19;
+      		<PointSymbolizer file="&symbols;/markeryellow.svg" allow-overlap="false" ignore-placement="false" transform="translate(0,-15)"/>
+	</Rule>
+	<Rule>
+		<Filter>[place] = 'village'</Filter>
+      		&maxscale_zoom1;
+      		&minscale_zoom19;
+      		<PointSymbolizer file="&symbols;/markerblue.svg" allow-overlap="false" ignore-placement="false" transform="translate(0,-15)"/>
+    	</Rule>
+</Style>
+
+<Layer name="feltcodeplaces" status="on" srs="&osm2pgsql_projection;">
+    <StyleName>feltcode</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,"name",place,"ref:se:scb" from &prefix;_point where "place" in ('city','town','village') AND ("ref:se:scb" not like '____') AND ("ref:se:scb" is not null) order by place) as places	
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+</Map>

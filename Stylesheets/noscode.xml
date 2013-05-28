@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" minimum-version="2.0.0">
+  &fontset-settings;
+
+<Style name="nocode">
+	<Rule>
+      		&maxscale_zoom1;
+      		&minscale_zoom19;
+      		<PointSymbolizer file="&symbols;/markergreen.svg" allow-overlap="false" ignore-placement="false" transform="translate(0,-15)"/>
+	</Rule>
+</Style>
+
+<Layer name="nocodeplaces" status="on" srs="&osm2pgsql_projection;">
+    <StyleName>nocode</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,"name",place,"ref:se:scb" from &prefix;_point where "place"='hamlet' AND "ref:se:scb" is null order by place) as places	
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+</Map>

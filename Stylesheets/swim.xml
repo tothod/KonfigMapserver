@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" minimum-version="2.0.0">
+  &fontset-settings;
+
+<Style name="swimming">
+    	<Rule>
+		<Filter>[name]!=''</Filter>      		
+		&maxscale_zoom1;
+      		&minscale_zoom19;
+      		<PointSymbolizer file="&symbols;/officiell_badplats.png" allow-overlap="false" ignore-placement="false"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom1;
+      		&minscale_zoom19;
+      		<PointSymbolizer file="&symbols;/inofficiell_badplats.png" allow-overlap="false" ignore-placement="false"/>
+    	</Rule>
+</Style>
+
+<Layer name="swimmingplaces" status="on" srs="&osm2pgsql_projection;">
+    <StyleName>swimming</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,"name" from &prefix;_polygon where "natural"='beach' order by "name") as beaches	
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+</Map>

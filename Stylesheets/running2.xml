@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" minimum-version="2.0.0">
+  &fontset-settings;
+    	
+<Style name="running">
+    	    	<Rule>
+      		&maxscale_zoom1;
+      		&minscale_zoom10;
+      		<PointSymbolizer file="&symbols;/Running_Man-32x32.png" allow-overlap="false" ignore-placement="false"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>(not [colour] !='')</Filter>
+		<LinePatternSymbolizer width="15" height="2" file="colours/#000000-2.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='')</Filter>
+		<LinePatternSymbolizer width="15" height="2" file="colours/[colour]-2.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='') and ([length] &gt; 2000) and ([length] &lt;= 3000)</Filter>
+		<LinePatternSymbolizer width="15" height="4" file="colours/[colour]-4.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='') and ([length] &gt; 3000) and ([length] &lt;= 4000)</Filter>
+		<LinePatternSymbolizer width="15" height="6" file="colours/[colour]-6.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='') and ([length] &gt; 4000) and ([length] &lt;= 7000)</Filter>
+		<LinePatternSymbolizer width="15" height="8" file="colours/[colour]-8.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='') and ([length] &gt; 7000) and ([length] &lt;= 9900)</Filter>
+		<LinePatternSymbolizer width="15" height="10" file="colours/[colour]-10.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='') and ([length] &gt; 9900) and ([length] &lt;= 15000)</Filter>
+		<LinePatternSymbolizer width="15" height="12" file="colours/[colour]-12.png"/>
+    	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+      		&minscale_zoom19;
+		<Filter>([colour] !='') and ([length] &gt; 15000) and ([length] &lt;= 150000)</Filter>
+		<LinePatternSymbolizer width="15" height="14" file="colours/[colour]-14.png"/>
+    	</Rule>
+</Style>
+
+<Layer name="running_routes" status="on" srs="&osm2pgsql_projection;">
+	<StyleName>running</StyleName>
+    	<Datasource>
+      		<Parameter name="table">
+      			(select way,colour,length from &prefix;_line 
+			where (route='running') order by length desc) as routes	
+      		</Parameter>
+      		&datasource-settings;
+    	</Datasource>
+</Layer>
+</Map>

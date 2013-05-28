@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+%entities;
+]>
+<Map background-color="#b5d0d0" srs="&srs900913;" minimum-version="2.0.0">
+&fontset-settings;
+
+&layer-shapefiles;
+&layer-citywall;
+
+	<Style name="roughstyle">
+    		<Rule>
+      			&maxscale_zoom1;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="70" height="46" type="png" file="&symbols;/rough.png"/>
+    		</Rule>
+	</Style>
+	<Style name="builtupstyle">
+    		<Rule>
+      			&maxscale_zoom1;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="100" type="png" file="&symbols;/builtup.png"/>
+    		</Rule>
+	</Style>
+	<Style name="farmstyle">
+    		<Rule>
+      			&maxscale_zoom1;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="100" type="png" file="&symbols;/farmland.png"/>
+    		</Rule>
+	</Style>
+	<Style name="foreststyle">
+    		<Rule>
+      			&maxscale_zoom1;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="600" height="600" type="png" file="&symbols;/skog.png"/>
+    		</Rule>
+	</Style>
+	<Style name="fairwaystyle">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom16;
+			<PolygonPatternSymbolizer width="25" height="5" type="png" file="&symbols;/fairway16.png"/>
+			<LineSymbolizer stroke="#000" stroke-width="1"/>
+    		</Rule>
+		<Rule>
+      			&maxscale_zoom17;
+			&minscale_zoom17;
+			<PolygonPatternSymbolizer width="50" height="10" type="png" file="&symbols;/fairway17.png"/>
+			<LineSymbolizer stroke="#000" stroke-width="1"/>
+    		</Rule>
+		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="20" type="png" file="&symbols;/fairway.png"/>
+			<LineSymbolizer stroke="#000" stroke-width="1"/>
+    		</Rule>
+	</Style>
+	<Style name="bunkerstyle">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="100" type="png" file="&symbols;/bunker.png"/>
+    		</Rule>
+	</Style>
+	<Style name="teestyle">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="100" type="png" file="&symbols;/green.png"/>
+			<LineSymbolizer stroke="#000" stroke-width="1"/>
+    		</Rule>
+	</Style>
+	<Style name="greenstyle">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="100" type="png" file="&symbols;/green.png"/>
+			<LineSymbolizer stroke="#000" stroke-width="1"/>
+    		</Rule>
+	</Style>
+	<Style name="roadstyle">
+	<Rule>
+      		&maxscale_zoom14;
+      		&minscale_zoom15;
+      		<LineSymbolizer stroke="#888" stroke-width="2"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom16;
+      		&minscale_zoom16;
+      		<LinePatternSymbolizer width="100" height="30" type="png" file="&symbols;/road16.png"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom17;
+      		&minscale_zoom17;
+      		<LinePatternSymbolizer width="100" height="30" type="png" file="&symbols;/road17.png"/>
+    	</Rule>
+    	<Rule>
+      		&maxscale_zoom18;
+      		&minscale_zoom18;
+      		<LinePatternSymbolizer width="100" height="30" type="png" file="&symbols;/road.png"/>
+    	</Rule>
+	</Style>
+	<Style name="trackstyle">
+	<Rule>
+      		&maxscale_zoom14;
+      		&minscale_zoom15;
+      		<LineSymbolizer stroke="#872" stroke-width="2"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom16;
+      		&minscale_zoom16;
+      		<LineSymbolizer stroke="#872" stroke-width="4"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom17;
+      		&minscale_zoom17;
+      		<LinePatternSymbolizer width="50" height="15" type="png" file="&symbols;/track16.png"/>
+    	</Rule>
+    	<Rule>
+      		&maxscale_zoom18;
+      		&minscale_zoom18;
+      		<LinePatternSymbolizer width="100" height="30" type="png" file="&symbols;/track17.png"/>
+    	</Rule>
+	</Style>
+	<Style name="pathstyle">
+	<Rule>
+      		&maxscale_zoom15;
+      		&minscale_zoom16;
+		<Filter>not [surface] !=''</Filter>
+      		<LineSymbolizer stroke="#888" stroke-width="2"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom17;
+      		&minscale_zoom17;
+		<Filter>not [surface] !=''</Filter>
+      		<LinePatternSymbolizer width="50" height="5" type="png" file="&symbols;/path17.png"/>
+    	</Rule>
+    	<Rule>
+      		&maxscale_zoom18;
+      		&minscale_zoom18;
+		<Filter>not [surface] !=''</Filter>
+      		<LinePatternSymbolizer width="100" height="10" type="png" file="&symbols;/path.png"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom15;
+      		&minscale_zoom17;
+		<Filter>[surface] ='ground' or [surface] ='dirt'</Filter>
+      		<LineSymbolizer stroke="#872" stroke-width="2" stroke-dasharray="10,5"/>
+    	</Rule>
+    	<Rule>
+      		&maxscale_zoom18;
+      		&minscale_zoom18;
+		<Filter>[surface] ='ground' or [surface] ='dirt'</Filter>
+      		<LinePatternSymbolizer width="50" height="6" type="png" file="&symbols;/pathground.png"/>
+    	</Rule>
+	<Rule>
+      		&maxscale_zoom15;
+      		&minscale_zoom17;
+		<Filter>[surface] ='gravel'</Filter>
+      		<LineSymbolizer stroke="#888" stroke-width="2" stroke-dasharray="10,5"/>
+    	</Rule>
+    	<Rule>
+      		&maxscale_zoom18;
+      		&minscale_zoom18;
+		<Filter>[surface] ='gravel'</Filter>
+      		<LinePatternSymbolizer width="50" height="6" type="png" file="&symbols;/pathgravel.png"/>
+    	</Rule>
+	</Style>
+	<Style name="buildingstyle">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<PolygonPatternSymbolizer width="100" height="100" type="png" file="&symbols;/building.png"/>
+			<LineSymbolizer stroke="#000" stroke-width="1"/>
+    		</Rule>
+	</Style>
+	<Style name="treestyle">
+		<Rule>
+      			&maxscale_zoom18;
+			&minscale_zoom18;
+			<PointSymbolizer file="&symbols;/tree19.png" allow-overlap="true"/>
+    		</Rule>
+		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom16;
+			<PointSymbolizer file="&symbols;/tree17.png" allow-overlap="true"/>
+    		</Rule>
+		<Rule>
+      			&maxscale_zoom17;
+			&minscale_zoom17;
+			<PointSymbolizer file="&symbols;/tree18.png" allow-overlap="true"/>
+    		</Rule>
+	</Style>
+	<Style name="water_hazard-style">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<LineSymbolizer stroke="#FF0" stroke-width="2"/>
+    		</Rule>
+	</Style>
+	<Style name="lateral_water_hazard-style">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<LineSymbolizer stroke="#F00" stroke-width="2"/>
+    		</Rule>
+	</Style>
+	<Style name="optimal_route-style">
+    		<Rule>
+      			&maxscale_zoom15;
+			&minscale_zoom18;
+			<LineSymbolizer stroke="#000" stroke-width="3"/>
+    		</Rule>
+	</Style>
+
+	<Layer name="rough" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>roughstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_polygon where (leisure='golf_course' or golf='rough')) as roughs
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="farmland" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>farmstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_polygon where (landuse in ('farmland','farm','farmyard'))) as farms
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="builtup" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>builtupstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_polygon WHERE (landuse in ('residential','commercial','industrial'))) as builtups
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="forest" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>foreststyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_polygon where ("natural"='wood' or landuse='forest')) as forests
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="fairway" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>fairwaystyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_polygon where golf='fairway') as fairways
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="bunker" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>bunkerstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_polygon where golf='bunker') as bunkers
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="tee" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>greenstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_polygon where golf='tee') as greens
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="green" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>greenstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_polygon where golf='green') as greens
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="building" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>buildingstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_polygon where building IS NOT NULL) as buildings
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="trees" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>treestyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_point where "natural"='tree') as trees
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+
+&layer-water;
+&layer-water_features;
+
+	<Layer name="roads" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>roadstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_line WHERE highway in ('service','residential','driveway','unclassified','primary','secondary','tertiary')) as roads
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="tracks" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>trackstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_line WHERE highway='track') as tracks
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="pather" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>pathstyle</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,surface from &prefix;_line WHERE highway in ('path','footway','cycleway','bridleway','steps')) as pather
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+
+	<Layer name="water_hazard" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>water_hazard-style</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_line where golf='water_hazard') as waterhazards
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="water_hazardpoly" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>water_hazard-style</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_polygon where golf='water_hazard') as waterhazards
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="lateral_water_hazard" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>lateral_water_hazard-style</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_line where golf='lateral_water_hazard') as lwaterhazards
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="lateral_water_hazardpoly" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>lateral_water_hazard-style</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way from &prefix;_polygon where golf='lateral_water_hazard') as lwaterhazards
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+	<Layer name="optimal_route" status="on" srs="&osm2pgsql_projection;">
+    		<StyleName>optimal_route-style</StyleName>
+    		<Datasource>
+      			<Parameter name="table">
+      				(select way,name from &prefix;_line where golf='hole') as holes
+      			</Parameter>
+      		&datasource-settings;
+    		</Datasource>
+	</Layer>
+</Map>

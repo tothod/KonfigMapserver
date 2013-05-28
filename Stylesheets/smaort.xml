@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+<!ENTITY missing1 SYSTEM "orter/s1.xml.inc">
+<!ENTITY missing2 SYSTEM "orter/s2.xml.inc">
+<!ENTITY missing3 SYSTEM "orter/s3.xml.inc">
+<!ENTITY missing4 SYSTEM "orter/s4.xml.inc">
+<!ENTITY missing5 SYSTEM "orter/s5.xml.inc">
+<!ENTITY missing6 SYSTEM "orter/s6.xml.inc">
+<!ENTITY missing7 SYSTEM "orter/s7.xml.inc">
+<!ENTITY missing8 SYSTEM "orter/s8.xml.inc">
+<!ENTITY missing9 SYSTEM "orter/s9.xml.inc">
+<!ENTITY missin10 SYSTEM "orter/s10.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" minimum-version="2.0.0">
+  &fontset-settings;
+
+<Style name="kommungrans">
+	<Rule>
+		&missing1;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#aaff00"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing2;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#cfff00"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing3;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#f5ff00"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing4;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ffe200"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing5;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ffbc00"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing6;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ff9700"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing7;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ff7100"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing8;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ff4b00"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missing9;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ff2500"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>
+		&missin10;      		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0.5" fill="#ff0000"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+	<Rule>     		
+		&maxscale_zoom1;
+      		&minscale_zoom18;
+      		<PolygonSymbolizer fill-opacity="0" fill="#000000"/>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
+    	</Rule>
+</Style>
+
+<Layer name="kommun" status="on" srs="&osm2pgsql_projection;">
+    <StyleName>kommungrans</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select "KNKOD",way
+       from &prefix;_polygon
+       where "boundary"='administrative'
+         and admin_level in ('7')
+       ) as kommunadmin</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+</Map>
