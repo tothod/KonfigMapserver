@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sjökort över Sverige</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" /><![endif]-->
+	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+	<style type="text/css" media="screen">
+		html,body	
+			{
+				margin: 0px;
+				padding: 0px;
+				width: 100%;
+				height: 100%;
+			}
+	</style>
+</head>
+
+<body>
+	<div id="map" role="main" style="width: 100%; height:100%"></div>
+
+	<script type="text/javascript" charset="utf-8">
+
+	var startposition = new L.LatLng(55.71, 15.4);
+
+	var seamap = new L.TileLayer('seamap/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		maxZoom: 18
+	});
+	var oseam = new L.tileLayer('http://t1.openseamap.org/seamark/{z}/{x}/{y}.png', {
+			maxZoom: 18
+		});
+	
+	var layerControl = new L.Control.Layers({
+		"Sjökort": seamap
+	},{
+		"OpenSeaMap": oseam
+	},{
+		
+		collapsed: true
+	});
+	var map = new L.Map('map', {
+		center: startposition,
+		zoom: 7,
+		layers: [
+			seamap  
+		]
+	});
+	map.addControl(layerControl);
+
+	</script>
+</body>
+</html>

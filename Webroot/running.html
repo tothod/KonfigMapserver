@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Markerade löpspår i Sverige</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" /><![endif]-->
+	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+	<style type="text/css" media="screen">
+		html,body	
+			{
+				margin: 0px;
+				padding: 0px;
+				width: 100%;
+				height: 100%;
+			}
+	</style>
+</head>
+
+<body>
+	<div id="map" role="main" style="width: 100%; height:100%"></div>
+
+	<script type="text/javascript" charset="utf-8">
+
+	var startposition = new L.LatLng(55.71, 15.4);
+
+	var hyddafull = new L.TileLayer('http://{s}.osm.kodapan.se/hyddafull/{z}/{x}/{y}.png', {
+		subdomains: "ab",
+		attribution: 'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		maxZoom: 18
+	});
+
+	var mapnik = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		subdomains: "abc",
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		maxZoom: 18
+	});
+	var mqopen = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg', {
+		subdomains: "1234",
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery &copy; <a href="http://cloudmade.com">CloudMade</a>',
+		maxZoom: 18
+	});
+	var running = new L.tileLayer('running2/{z}/{x}/{y}.png', {
+			maxZoom: 18
+		});
+	
+	var layerControl = new L.Control.Layers({
+		"Hydda": hyddafull,
+		"OpenStreetMap": mapnik,
+		"MapQuest Open": mqopen
+	},{
+		"Löpspår": running
+	},{
+		
+		collapsed: true
+	});
+	var map = new L.Map('map', {
+		center: startposition,
+		zoom: 7,
+		layers: [
+			hyddafull,running  
+		]
+	});
+	map.addControl(layerControl);
+
+	</script>
+</body>
+</html>
